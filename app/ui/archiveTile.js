@@ -486,6 +486,16 @@ module.exports.empty = function(state, emit) {
             })}
           </button>
         `;
+  const uploadNotice = state.WEB_UI.UPLOAD_AREA_NOTICE_HTML
+    ? html`
+        <p
+          class="w-full mt-8 p-2 border-default dark:border-grey-70 rounded-default text-orange-60 bg-yellow-40 text-center leading-normal"
+        >
+          ${raw(state.WEB_UI.UPLOAD_AREA_NOTICE_HTML)}
+        </p>
+      `
+    : '';
+
   return html`
     <send-upload-area
       class="flex flex-col items-center justify-center border-2 border-dashed border-grey-transparent rounded-default px-6 py-16 h-full w-full dark:border-grey-60"
@@ -526,7 +536,7 @@ module.exports.empty = function(state, emit) {
       >
         ${state.translate('addFilesButton')}
       </label>
-      ${upsell}
+      ${upsell} ${uploadNotice}
     </send-upload-area>
   `;
 
@@ -559,6 +569,38 @@ module.exports.preview = function(state, emit) {
           ${archiveDetails(state.translate, archive)}
         </div>
       `;
+  const notice = state.WEB_UI.DOWNLOAD_NOTICE_HTML
+    ? html`
+        <p
+          class="w-full mt-4 p-2 border-default dark:border-grey-70 rounded-default text-orange-60 bg-yellow-40 text-center leading-normal"
+        >
+          ${raw(state.WEB_UI.DOWNLOAD_NOTICE_HTML)}
+        </p>
+      `
+    : '';
+  const sponsor = state.WEB_UI.SHOW_THUNDERBIRD_SPONSOR
+    ? html`
+        <a
+          class="w-full mt-5 mb-2 p-2 border-default dark:border-grey-70 rounded-default text-orange-60 bg-yellow-40 text-center leading-normal"
+          href="https://www.thunderbird.net/"
+        >
+          <svg
+            width="30"
+            height="30"
+            class="m-2 mr-3 d-inline-block align-middle"
+          >
+            <image
+              xlink:href="${assets.get('thunderbird-icon.svg')}"
+              src="${assets.get('thunderbird-icon.svg')}"
+              width="30"
+              height="30"
+            />
+          </svg>
+          ${state.translate('sponsoredByThunderbird')}
+        </a>
+      `
+    : '';
+
   return html`
     <send-archive
       class="flex flex-col max-h-full bg-white p-4 w-full md:w-128 dark:bg-grey-90"
@@ -574,6 +616,7 @@ module.exports.preview = function(state, emit) {
       >
         ${state.translate('downloadButtonLabel')}
       </button>
+      ${notice} ${sponsor}
     </send-archive>
   `;
 

@@ -175,7 +175,8 @@ const conf = convict({
   },
   custom_description: {
     format: String,
-    default: 'Encrypt and send files with a link that automatically expires to ensure your important documents don’t stay online forever.',
+    default:
+      'Encrypt and send files with a link that automatically expires to ensure your important documents don’t stay online forever.',
     env: 'CUSTOM_DESCRIPTION'
   },
   detect_base_url: {
@@ -262,6 +263,31 @@ const conf = convict({
     format: String,
     default: '',
     env: 'CUSTOM_FOOTER_URL'
+  },
+  main_notice_html: {
+    format: String,
+    default: '',
+    env: 'SEND_MAIN_NOTICE_HTML'
+  },
+  upload_area_notice_html: {
+    format: String,
+    default: '',
+    env: 'SEND_UPLOAD_AREA_NOTICE_HTML'
+  },
+  uploads_list_notice_html: {
+    format: String,
+    default: '',
+    env: 'SEND_UPLOADS_LIST_NOTICE_HTML'
+  },
+  download_notice_html: {
+    format: String,
+    default: '',
+    env: 'SEND_DOWNLOAD_NOTICE_HTML'
+  },
+  show_thunderbird_sponsor: {
+    format: Boolean,
+    default: false,
+    env: 'SHOW_THUNDERBIRD_SPONSOR'
   },
   ui_color_primary: {
     format: String,
